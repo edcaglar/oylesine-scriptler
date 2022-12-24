@@ -2,6 +2,7 @@ import os
 import tqdm
 from pydub import AudioSegment
 import argparse
+import sys
 
 def concat_audio_files(source_path, destination_path, duration):
 
@@ -29,7 +30,7 @@ def concat_audio_files(source_path, destination_path, duration):
 
 
 if __name__ == "__main__":
-    import sys
+
     parser = argparse.ArgumentParser(description="Audio Concatenate")
     parser.add_argument('--source', '-s', type=str, required=True)
     parser.add_argument('--destination', '-d', type=str, required=True)
