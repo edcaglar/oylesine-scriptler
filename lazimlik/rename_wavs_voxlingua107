@@ -1,0 +1,17 @@
+import os
+from pydub import AudioSegment
+import tqdm
+labels = [f for f in os.listdir() if not f.endswith(".py")]
+
+for label in labels:
+    label_path = os.path.join(label)
+    wavs = os.listdir(label_path)
+
+    for wav in tqdm.tqdm(wavs):
+        wav_path = os.path.join(label_path, wav)
+        signal = AudioSegment.from_wav(wav_path)
+        duration = "{:06.3f}".format(signal.duration_seconds)
+
+        id = wav.split("---")[0]
+        new_name_path = label_path+"/"+id+"---"+"0000.000-00"+duration+".wav"
+        os.rename(wav_path, new_name_path)
